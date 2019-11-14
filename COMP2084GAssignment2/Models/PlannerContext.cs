@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace COMP2084GAssignment1.Models
 {
-    public partial class PlannerContext : DbContext
+    public partial class PlannerContext : IdentityDbContext
     {
         public PlannerContext()
         {
@@ -30,6 +31,9 @@ namespace COMP2084GAssignment1.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // fix from stack overflow
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity<Assignment>(entity =>
