@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using COMP2084GAssignment1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace COMP2084GAssignment1.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly PlannerContext _context;
@@ -18,6 +20,7 @@ namespace COMP2084GAssignment1.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         // GET: Courses
         public async Task<IActionResult> Index()
         {
