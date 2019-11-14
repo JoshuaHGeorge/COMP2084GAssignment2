@@ -43,6 +43,21 @@ namespace COMP2084GAssignment2
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<PlannerContext>();
 
+            //make variables for google login
+            var ClientId = Configuration.GetSection("Google")["ClientId"];
+            var ClientSecret = Configuration.GetSection("Google")["ClientSecret"];
+
+            // adding google authentication
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    //IConfigurationSection googleAuthNSection =
+                    //    Configuration.GetSection("Authentication:Google");
+
+                    options.ClientId = ClientId;
+                    options.ClientSecret = ClientSecret;
+                });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
